@@ -137,12 +137,12 @@ describe MontoEscrito::Conversor do
 
   it "convierte miles" do
     miles = {
-      1000 => 'un mil',
-      2134 => 'dos mil ciento treinta y cuatro',
-      37690 => 'treinta y siete mil seiscientos noventa',
-      654321 => 'seiscientos cincuenta y cuatro mil trescientos veintiún',
-      808080 => 'ochocientos ocho mil ochenta',
-      999999 => 'novecientos noventa y nueve mil novecientos noventa y nueve'
+      1_000 => 'un mil',
+      2_134 => 'dos mil ciento treinta y cuatro',
+      37_690 => 'treinta y siete mil seiscientos noventa',
+      654_321 => 'seiscientos cincuenta y cuatro mil trescientos veintiún',
+      808_080 => 'ochocientos ocho mil ochenta',
+      999_999 => 'novecientos noventa y nueve mil novecientos noventa y nueve'
     }
 
     verificar_conversiones(miles)
@@ -150,12 +150,12 @@ describe MontoEscrito::Conversor do
 
   it "convierte millones" do
     millones = {
-      1000000 => 'un millón',
-      2134567 => 'dos millones ciento treinta y cuatro mil quinientos sesenta y siete',
-      37690163 => 'treinta y siete millones seiscientos noventa mil ciento sesenta y tres',
-      654321784 => 'seiscientos cincuenta y cuatro millones trescientos veintiún mil setecientos ochenta y cuatro',
-      808080080 => 'ochocientos ocho millones ochenta mil ochenta',
-      999999999 => 'novecientos noventa y nueve millones novecientos noventa y nueve mil novecientos noventa y nueve'
+      1_000_000 => 'un millón',
+      2_134_567 => 'dos millones ciento treinta y cuatro mil quinientos sesenta y siete',
+      37_690_163 => 'treinta y siete millones seiscientos noventa mil ciento sesenta y tres',
+      654_321_784 => 'seiscientos cincuenta y cuatro millones trescientos veintiún mil setecientos ochenta y cuatro',
+      808_080_080 => 'ochocientos ocho millones ochenta mil ochenta',
+      999_999_999 => 'novecientos noventa y nueve millones novecientos noventa y nueve mil novecientos noventa y nueve'
     }
 
     verificar_conversiones(millones)
@@ -163,10 +163,10 @@ describe MontoEscrito::Conversor do
 
   it "convierte miles de millones" do
     miles_de_millones = {
-      1000000000 => 'un mil millones',
-      10000000000 => 'diez mil millones',
-      100000000000 => 'cien mil millones',
-      999999999999 => 'novecientos noventa y nueve mil novecientos noventa y nueve millones novecientos noventa y nueve mil novecientos noventa y nueve'
+      1_000_000_000 => 'un mil millones',
+      10_000_000_000 => 'diez mil millones',
+      100_000_000_000 => 'cien mil millones',
+      999_999_999_999 => 'novecientos noventa y nueve mil novecientos noventa y nueve millones novecientos noventa y nueve mil novecientos noventa y nueve'
     }
 
     verificar_conversiones(miles_de_millones)
@@ -174,9 +174,9 @@ describe MontoEscrito::Conversor do
 
   it "convierte billones" do
     billones = {
-      1000000000000 => 'un billón',
-      2000000000000 => 'dos billones',
-      999999999999999999 => 'novecientos noventa y nueve mil novecientos noventa y nueve billones novecientos noventa y nueve mil novecientos noventa y nueve millones novecientos noventa y nueve mil novecientos noventa y nueve'
+      1_000_000_000_000 => 'un billón',
+      2_000_000_000_000 => 'dos billones',
+      999_999_999_999_999_999 => 'novecientos noventa y nueve mil novecientos noventa y nueve billones novecientos noventa y nueve mil novecientos noventa y nueve millones novecientos noventa y nueve mil novecientos noventa y nueve'
     }
 
     verificar_conversiones(billones)
@@ -184,16 +184,16 @@ describe MontoEscrito::Conversor do
 
   it "convierte trillones" do
     trillones = {
-      1000000000000000000 => 'un trillón',
-      2000000000000000000 => 'dos trillones',
-      999999999999999999999999 => 'novecientos noventa y nueve mil novecientos noventa y nueve trillones novecientos noventa y nueve mil novecientos noventa y nueve billones novecientos noventa y nueve mil novecientos noventa y nueve millones novecientos noventa y nueve mil novecientos noventa y nueve'
+      1_000_000_000_000_000_000 => 'un trillón',
+      2_000_000_000_000_000_000 => 'dos trillones',
+      999_999_999_999_999_999_999_999 => 'novecientos noventa y nueve mil novecientos noventa y nueve trillones novecientos noventa y nueve mil novecientos noventa y nueve billones novecientos noventa y nueve mil novecientos noventa y nueve millones novecientos noventa y nueve mil novecientos noventa y nueve'
     }
 
     verificar_conversiones(trillones)
   end
 
   it "no soporta cuatrillones" do
-    numero = 1000000000000000000000000
+    numero = 1_000_000_000_000_000_000_000_000
     proc {MontoEscrito::Conversor.convertir(numero)}.must_raise(ArgumentError)
   end
 

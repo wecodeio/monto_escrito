@@ -3,7 +3,7 @@ module MontoEscrito
 
     def self.convertir(numero)
 
-      raise ArgumentError if numero >= 1000000000000000000000000 or numero < 0
+      raise ArgumentError if numero >= 1_000_000_000_000_000_000_000_000 or numero < 0
 
       if @@casos_especiales[numero]
         monto_escrito = @@casos_especiales[numero]
@@ -31,59 +31,59 @@ module MontoEscrito
     }
 
     @@casos = {
-      2000000000000000000 =>
+      2_000_000_000_000_000_000 =>
         {
-          :divisor => 1000000000000000000,
+          :divisor => 1_000_000_000_000_000_000,
           :multiplicador_primario => 1,
-          :multiplicador_secundario => 1000000000000000000,
+          :multiplicador_secundario => 1_000_000_000_000_000_000,
           :sufijo => ' trillones',
           :continuacion => ' ',
         },
-      1000000000000000000 =>
+      1_000_000_000_000_000_000 =>
         {
-          :divisor => 1000000000000000000,
+          :divisor => 1_000_000_000_000_000_000,
           :multiplicador_primario => 1,
-          :multiplicador_secundario => 1000000000000000000,
+          :multiplicador_secundario => 1_000_000_000_000_000_000,
           :sufijo => ' trillón',
           :continuacion => ' ',
         },
-      2000000000000 =>
+      2_000_000_000_000 =>
         {
-          :divisor => 1000000000000,
+          :divisor => 1_000_000_000_000,
           :multiplicador_primario => 1,
-          :multiplicador_secundario => 1000000000000,
+          :multiplicador_secundario => 1_000_000_000_000,
           :sufijo => ' billones',
           :continuacion => ' ',
         },
-      1000000000000 =>
+      1_000_000_000_000 =>
         {
-          :divisor => 1000000000000,
+          :divisor => 1_000_000_000_000,
           :multiplicador_primario => 1,
-          :multiplicador_secundario => 1000000000000,
+          :multiplicador_secundario => 1_000_000_000_000,
           :sufijo => ' billón',
           :continuacion => ' ',
         },
-      2000000 =>
+      2_000_000 =>
         {
-          :divisor => 1000000,
+          :divisor => 1_000_000,
           :multiplicador_primario => 1,
-          :multiplicador_secundario => 1000000,
+          :multiplicador_secundario => 1_000_000,
           :sufijo => ' millones',
           :continuacion => ' ',
         },
-      1000000 =>
+      1_000_000 =>
         {
-          :divisor => 1000000,
+          :divisor => 1_000_000,
           :multiplicador_primario => 1,
-          :multiplicador_secundario => 1000000,
+          :multiplicador_secundario => 1_000_000,
           :sufijo => ' millón',
           :continuacion => ' ',
         },
-      1000 =>
+      1_000 =>
         {
-          :divisor => 1000,
+          :divisor => 1_000,
           :multiplicador_primario => 1,
-          :multiplicador_secundario => 1000,
+          :multiplicador_secundario => 1_000,
           :sufijo => ' mil',
           :continuacion => ' ',
         },
