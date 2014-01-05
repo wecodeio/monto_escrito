@@ -1,5 +1,5 @@
-require_relative "../spec_helper"
-require File.expand_path("lib/monto_escrito/helpers/conversor.rb")
+require_relative "spec_helper"
+require File.expand_path("lib/monto_escrito/conversor.rb")
 
 describe MontoEscrito::Conversor do
 
