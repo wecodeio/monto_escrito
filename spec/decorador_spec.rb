@@ -1,10 +1,10 @@
 require_relative "spec_helper"
-require File.expand_path("lib/monto_escrito/conversor.rb")
+require File.expand_path("lib/monto_escrito/decorador.rb")
 
-describe MontoEscrito::Conversor do
+describe MontoEscrito::Decorador do
 
   def convertir(numero)
-    MontoEscrito::Conversor.convertir(numero)
+    MontoEscrito::Decorador.new(numero).to_s
   end
 
   def verificar_conversiones(numeros)
@@ -194,12 +194,12 @@ describe MontoEscrito::Conversor do
 
   it "no soporta cuatrillones" do
     numero = 1_000_000_000_000_000_000_000_000
-    proc {MontoEscrito::Conversor.convertir(numero)}.must_raise(ArgumentError)
+    proc {MontoEscrito::Decorador.new(numero)}.must_raise(ArgumentError)
   end
 
   it "no soporta negativos" do
     numero = -1
-    proc {MontoEscrito::Conversor.convertir(numero)}.must_raise(ArgumentError)
+    proc {MontoEscrito::Decorador.new(numero)}.must_raise(ArgumentError)
   end
 
 end
