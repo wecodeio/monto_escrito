@@ -24,6 +24,8 @@ Para convertir una cantidad a palabras, simplemente hay que utilizar el método 
     => "diez"
     irb(main):002:0> MontoEscrito::Decorador.new(14).to_s
     => "catorce"
+    irb(main):003:0> MontoEscrito::Decorador.new(14.50).to_s(:short)
+    => "catorce con 50/100"
 
 Esta forma permite interpolar las conversiones:
 
@@ -44,5 +46,6 @@ Esta forma permite interpolar las conversiones:
 ## Change Log
 
 
+* `monto_escrito-1.0.1`: Se implementa formato `:short` para los decimales.
 * `monto_escrito-1.0.0`: Se implementa una API basada en un objeto decorador, permitiendo interpolar llamadas.
 * `monto_escrito-0.0.1`: Se utiliza la primera API que opera como helper

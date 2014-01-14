@@ -6,8 +6,14 @@ module MontoEscrito
       @numero = numero
     end
 
-    def to_s
-      @monto_escrito ||= calcular_monto_escrito
+    def to_s(format=:integer)
+      if (format == :integer)
+        @monto_escrito ||= calcular_monto_escrito
+      else
+        centavos = (@numero - @numero.floor) * 100
+        @numero = @numero.floor
+        @monto_escrito ||= "#{calcular_monto_escrito} con #{centavos.to_i}/100"
+      end
     end
 
     private

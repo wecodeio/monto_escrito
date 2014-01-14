@@ -3,13 +3,13 @@ require File.expand_path("lib/monto_escrito/decorador.rb")
 
 describe MontoEscrito::Decorador do
 
-  def convertir(numero)
-    MontoEscrito::Decorador.new(numero).to_s
+  def convertir(numero, formato)
+    MontoEscrito::Decorador.new(numero).to_s(formato)
   end
 
-  def verificar_conversiones(numeros)
+  def verificar_conversiones(numeros, formato = :integer)
     numeros.each { |numero, letras|
-      convertir(numero).must_equal letras
+      convertir(numero, formato).must_equal letras
     }
   end
 
@@ -200,6 +200,17 @@ describe MontoEscrito::Decorador do
   it "no soporta negativos" do
     numero = -1
     proc {MontoEscrito::Decorador.new(numero)}.must_raise(ArgumentError)
+  end
+
+  it "imprime decimales en formato :short" do
+
+    decimales = {
+      0.25 => 'cero con 25/100',
+      1.50 => 'un con 50/100',
+      2.75 => 'dos con 75/100'
+    }
+
+    verificar_conversiones(decimales, :short)
   end
 
 end
