@@ -8,30 +8,34 @@ module MontoEscrito
 
     def to_s(format=:integer)
       if (format == :integer)
-        @monto_escrito ||= calcular_monto_escrito
+        @monto_escrito ||= calcular_monto_escrito(@numero)
       else
         centavos = (@numero - @numero.floor) * 100
         @numero = @numero.floor
-        @monto_escrito ||= "#{calcular_monto_escrito} con #{centavos.to_i}/100"
+        if (format == :short)
+          @monto_escrito ||= "#{calcular_monto_escrito(@numero)} con #{centavos.to_i}/100"
+        else
+          @monto_escrito ||= "#{calcular_monto_escrito(@numero)} con #{calcular_monto_escrito(centavos)}"
+        end
       end
     end
 
     private
 
-    def calcular_monto_escrito
+    def calcular_monto_escrito(numero)
 
-      if casos_especiales[@numero]
-        monto_escrito = casos_especiales[@numero]
+      if casos_especiales[numero]
+        monto_escrito = casos_especiales[numero]
       else
 
         monto_escrito = ''
 
         casos.each do |caso, detalles|
-          if @numero >= caso
-            valor = (@numero.to_i / detalles[:divisor]) * detalles[:multiplicador_primario]
-            monto_escrito += Decorador.new(valor).to_s + detalles[:sufijo]
-            @numero -= valor * detalles[:multiplicador_secundario]
-            if @numero > 0
+          if numero >= caso
+            valor = (numero.to_i / detalles[:divisor]) * detalles[:multiplicador_primario]
+            monto_escrito += calcular_monto_escrito(valor) + detalles[:sufijo]
+            numero -= valor * detalles[:multiplicador_secundario]
+            if numero > 0
               monto_escrito += detalles[:continuacion]
             end
           end

@@ -213,4 +213,15 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(decimales, :short)
   end
 
+  it "imprime decimales en formato :long" do
+
+    decimales = {
+      0.25 => 'cero con veinticinco',
+      1.50 => 'un con cincuenta',
+      2.75 => 'dos con setenta y cinco'
+    }
+
+    verificar_conversiones(decimales, :long)
+  end
+
 end
