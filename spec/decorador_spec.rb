@@ -207,7 +207,13 @@ describe MontoEscrito::Decorador do
     decimales = {
       0.25 => 'cero con 25/100',
       1.50 => 'un con 50/100',
-      2.75 => 'dos con 75/100'
+      2.75 => 'dos con 75/100',
+      0.1 => 'cero con 10/100',
+      0.01 => 'cero con 1/100',
+      0.100 => 'cero con 10/100',
+      0.123 => 'cero con 12/100',
+      0.125 => 'cero con 13/100',
+      0.129 => 'cero con 13/100'
     }
 
     verificar_conversiones(decimales, :short)

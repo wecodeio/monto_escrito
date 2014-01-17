@@ -48,6 +48,7 @@ Esta forma permite interpolar las conversiones:
 ## Change Log
 
 
+* `monto_escrito-1.0.3`: Bug arreglado en formato `:short` para tres o más decimales.
 * `monto_escrito-1.0.2`: Se implementa formato `:long` para los decimales.
 * `monto_escrito-1.0.1`: Se implementa formato `:short` para los decimales.
 * `monto_escrito-1.0.0`: Se implementa una API basada en un objeto decorador, permitiendo interpolar llamadas.

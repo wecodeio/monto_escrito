@@ -10,7 +10,7 @@ module MontoEscrito
       if (format == :integer)
         @monto_escrito ||= calcular_monto_escrito(@numero)
       else
-        centavos = (@numero - @numero.floor) * 100
+        centavos = (@numero - @numero.floor).round(2) * 100
         @numero = @numero.floor
         if (format == :short)
           @monto_escrito ||= "#{calcular_monto_escrito(@numero)} con #{centavos.to_i}/100"
