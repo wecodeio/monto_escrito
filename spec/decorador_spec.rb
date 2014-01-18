@@ -224,7 +224,13 @@ describe MontoEscrito::Decorador do
     decimales = {
       0.25 => 'cero con veinticinco',
       1.50 => 'un con cincuenta',
-      2.75 => 'dos con setenta y cinco'
+      2.75 => 'dos con setenta y cinco',
+      0.1 => 'cero con diez',
+      0.01 => 'cero con un',
+      0.100 => 'cero con diez',
+      0.123 => 'cero con doce',
+      0.125 => 'cero con trece',
+      0.129 => 'cero con trece'
     }
 
     verificar_conversiones(decimales, :long)
