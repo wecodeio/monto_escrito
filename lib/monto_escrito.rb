@@ -3,5 +3,5 @@
 require 'monto_escrito/version'
 
 module MontoEscrito
-  require_relative 'decorador'
+  require 'monto_escrito/decorador'
 end
