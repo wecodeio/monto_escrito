@@ -1,19 +1,20 @@
-require_relative "spec_helper"
-require File.expand_path("lib/monto_escrito/decorador.rb")
+# frozen_string_literal: true
+
+require_relative 'spec_helper'
+require File.expand_path('lib/monto_escrito/decorador.rb')
 
 describe MontoEscrito::Decorador do
-
   def convertir(numero, formato)
     MontoEscrito::Decorador.new(numero).to_s(formato)
   end
 
   def verificar_conversiones(numeros, formato = :integer)
-    numeros.each { |numero, letras|
-      convertir(numero, formato).must_equal letras
-    }
+    numeros.each do |numero, letras|
+      _(convertir(numero, formato)).must_equal letras
+    end
   end
 
-  it "convierte un dígito" do
+  it 'convierte un dígito' do
     digitos = {
       0 => 'cero',
       1 => 'un',
@@ -30,7 +31,7 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(digitos)
   end
 
-  it "convierte los números del 11 al 19" do
+  it 'convierte los números del 11 al 19' do
     numeros = {
       11 => 'once',
       12 => 'doce',
@@ -46,7 +47,7 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(numeros)
   end
 
-  it "convierte los números del 21 al 29" do
+  it 'convierte los números del 21 al 29' do
     numeros = {
       21 => 'veintiún',
       22 => 'veintidós',
@@ -62,7 +63,7 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(numeros)
   end
 
-  it "convierte las decenas" do
+  it 'convierte las decenas' do
     numeros = {
       10 => 'diez',
       20 => 'veinte',
@@ -78,7 +79,7 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(numeros)
   end
 
-  it "convierte entre 31 y 99" do
+  it 'convierte entre 31 y 99' do
     numeros = {
       31 => 'treinta y un',
       32 => 'treinta y dos',
@@ -93,7 +94,7 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(numeros)
   end
 
-  it "convierte centenas" do
+  it 'convierte centenas' do
     numeros = {
       100 => 'cien',
       200 => 'doscientos',
@@ -109,7 +110,7 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(numeros)
   end
 
-  it "convierte entre 101 y 199" do
+  it 'convierte entre 101 y 199' do
     numeros = {
       101 => 'ciento un',
       102 => 'ciento dos',
@@ -122,7 +123,7 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(numeros)
   end
 
-  it "convierte entre 201 y 999" do
+  it 'convierte entre 201 y 999' do
     numeros = {
       201 => 'doscientos un',
       302 => 'trescientos dos',
@@ -135,7 +136,7 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(numeros)
   end
 
-  it "convierte miles" do
+  it 'convierte miles' do
     miles = {
       1_000 => 'un mil',
       2_134 => 'dos mil ciento treinta y cuatro',
@@ -148,7 +149,7 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(miles)
   end
 
-  it "convierte millones" do
+  it 'convierte millones' do
     millones = {
       1_000_000 => 'un millón',
       2_134_567 => 'dos millones ciento treinta y cuatro mil quinientos sesenta y siete',
@@ -161,7 +162,7 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(millones)
   end
 
-  it "convierte miles de millones" do
+  it 'convierte miles de millones' do
     miles_de_millones = {
       1_000_000_000 => 'un mil millones',
       10_000_000_000 => 'diez mil millones',
@@ -172,7 +173,7 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(miles_de_millones)
   end
 
-  it "convierte billones" do
+  it 'convierte billones' do
     billones = {
       1_000_000_000_000 => 'un billón',
       2_000_000_000_000 => 'dos billones',
@@ -182,7 +183,7 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(billones)
   end
 
-  it "convierte trillones" do
+  it 'convierte trillones' do
     trillones = {
       1_000_000_000_000_000_000 => 'un trillón',
       2_000_000_000_000_000_000 => 'dos trillones',
@@ -192,18 +193,17 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(trillones)
   end
 
-  it "no soporta cuatrillones" do
+  it 'no soporta cuatrillones' do
     numero = 1_000_000_000_000_000_000_000_000
-    proc {MontoEscrito::Decorador.new(numero)}.must_raise(ArgumentError)
+    _ { MontoEscrito::Decorador.new(numero) }.must_raise(ArgumentError)
   end
 
-  it "no soporta negativos" do
+  it 'no soporta negativos' do
     numero = -1
-    proc {MontoEscrito::Decorador.new(numero)}.must_raise(ArgumentError)
+    _ { MontoEscrito::Decorador.new(numero) }.must_raise(ArgumentError)
   end
 
-  it "imprime decimales en formato :short" do
-
+  it 'imprime decimales en formato :short' do
     decimales = {
       0.25 => 'cero con 25/100',
       1.50 => 'un con 50/100',
@@ -219,8 +219,7 @@ describe MontoEscrito::Decorador do
     verificar_conversiones(decimales, :short)
   end
 
-  it "imprime decimales en formato :long" do
-
+  it 'imprime decimales en formato :long' do
     decimales = {
       0.25 => 'cero con veinticinco',
       1.50 => 'un con cincuenta',
@@ -235,5 +234,4 @@ describe MontoEscrito::Decorador do
 
     verificar_conversiones(decimales, :long)
   end
-
 end
